@@ -111,10 +111,12 @@ console.log(ageJonas, ageIfeanyi, averageAge);
 
 const mass = 3;
 const height = 5;
-
+const mass2 = 6;
+const height2 = 9;
 const MassHeight = mass / (height * height);
 //or
 const MassHeightNew = mass / height ** 2;
+const MassHeightNew2 = mass2 / height2 ** 2;
+const biggest = MassHeightNew > MassHeightNew2;
 
-console.log(MassHeight);
-console.log(MassHeightNew);
+console.log(MassHeight, MassHeightNew, MassHeightNew2, biggest);
