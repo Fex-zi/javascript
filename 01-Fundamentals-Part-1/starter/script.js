@@ -105,3 +105,16 @@ console.log(x,y); // 10, 10
 
 const averageAge = (ageJonas + ageIfeanyi)/2 // the ()calculates first, without the ()calculation would start from the right'55.5 wrong', right ans is 32.5
 console.log(ageJonas, ageIfeanyi, averageAge);
+
+
+/* exercise code here 🙂 */
+
+const mass = 3;
+const height = 5;
+
+const MassHeight = mass / (height * height);
+//or
+const MassHeightNew = mass / height ** 2;
+
+console.log(MassHeight);
+console.log(MassHeightNew);
