@@ -89,7 +89,7 @@ console.log(ageJonas >= 23);
 const isFullAge = ageJonas >= 18;
 
 console.log(now - 1991 > now - 2018);
-*/
+
 
 const now = 2037
 const  ageJonas = now -1991;
@@ -107,7 +107,7 @@ const averageAge = (ageJonas + ageIfeanyi)/2 // the ()calculates first, without 
 console.log(ageJonas, ageIfeanyi, averageAge);
 
 
-/* exercise code here 🙂 */
+// exercise code here 🙂 
 
 const mass = 3;
 const height = 5;
@@ -120,3 +120,84 @@ const MassHeightNew2 = mass2 / height2 ** 2;
 const biggest = MassHeightNew > MassHeightNew2;
 
 console.log(MassHeight, MassHeightNew, MassHeightNew2, biggest);
+
+
+const firstname = 'Ifeanyi';
+const job = 'web developer';
+const birthYear = 1993;
+const Year = 2037;
+
+const ify = "I'm " + firstname + ', a ' + (Year - birthYear) + ' years old ' + job + '!';
+
+console.log(ify);
+
+//template literal strings
+const IfyNew = `I'm ${firstname}, a ${Year-birthYear} years old ${job}`;
+console.log(IfyNew);
+
+console.log(`you can also \n\ use this`);
+console.log(`you can 
+also
+use this`);
+
+
+const age = 19;
+const AgeNew = 15;
+const IsOldEnough = AgeNew >= 18;
+const YearsLeft = 18 - AgeNew;
+
+if(IsOldEnough) {
+    console.log(`sarah can start driving 😎`);
+} else {
+    console.log(`Sarah can't drive now. Wait another ${YearsLeft} Years`);
+}
+
+const birthYear = 1998
+let century;
+if(birthYear <=2000){
+    century = 20;
+} else {
+    century = 21;
+}
+console.log(`${century} century`);
+
+// practise code below 🙂 
+const massMark = 78;
+const heightMark = 1.69;
+const massJohn = 92;
+const heightJohn = 1.95;
+
+const BMIMark = massMark / (heightMark * heightMark);
+const BMIJohn = massJohn / (heightJohn * heightJohn);
+console.log(BMIMark, BMIJohn);
+
+
+let Bmi;
+if(BMIMark > BMIJohn){
+    Bmi = `Mark's BMI ${BMIMark} is higher than John's ${BMIJohn}!`;
+} else {
+    Bmi = `John's BMI ${BMIJohn} is higher than Mark's ${BMIMark}!`;
+}
+console.log(Bmi);
+
+*/
+
+//Type conversion 
+const inputYear = 1991;
+console.log(Number(inputYear) + 18);
+
+console.log(String(23)); //NOT RELEVANT
+//NUMBER, STRING, BOOLEAN
+
+//Type coercion
+console.log('I am ' + 23 + ' years old');
+console.log('23' - '10' - 3);
+console.log('23'/'2');
+
+
+let n = '1' + 1; //11 //'' is for strings & concanate +  
+n = n - 1; //11-1
+console.log(n); //10
+
+let n1 = 1 + 1; //2
+console.log(n1);
