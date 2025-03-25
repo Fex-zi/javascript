@@ -180,8 +180,6 @@ if(BMIMark > BMIJohn){
 }
 console.log(Bmi);
 
-*/
-
 //Type conversion 
 const inputYear = 1991;
 console.log(Number(inputYear) + 18);
@@ -195,9 +193,186 @@ console.log('23' - '10' - 3);
 console.log('23'/'2');
 
 
-let n = '1' + 1; //11 //'' is for strings & concanate +  
+let n = '1' + 1; //11 //'' is for strings & concatenate +  
 n = n - 1; //11-1
 console.log(n); //10
 
 let n1 = 1 + 1; //2
-console.log(n1);
+console.log(n1); 
+
+//5 falsy values: 0, '', undefined, null, NaN.
+console.log(Boolean(0));//false
+console.log(Boolean(undefined));//false
+console.log(Boolean(`Ify`));//true
+console.log(Boolean({}));//true
+console.log(Boolean(``));// false
+
+const money = 0;
+if(money){
+    console.log(`Don't spend it all`);
+
+} else {
+    console.log(`Get a job`);// this worked
+}
+
+let height = 12;
+if(height){
+    console.log(`height is defined`);
+} else {
+    console.log('Height is Undefined')
+}
+
+//equality //=== strict, == loose
+//USE STRICT ALWAYS
+
+const age = '18';
+if(age === 18){
+    console.log(`You are an adult(strict)`);// FALSE
+}
+
+if(age == 18){
+    console.log(`You are an adult(loose)`);// TRUE
+}
+
+const favorite = Number(prompt(`WHAT IS YOUR FAVORITE NUMBER?`));
+console.log(favorite);
+
+if(favorite == 23){ //would work
+    console.log(`cool! 23 is amazing number`);
+}
+
+if(favorite === 23){ //won't work until you wrap the string to number
+    console.log(`cool! 23 is amazing number`);
+} else if(favorite ===7){
+    console.log(`7 is the number`);
+}else if(favorite ===9){
+    console.log(`9 is the number`);
+}else {
+    console.log(`Number is not 23, 7 or 9😎`)
+}
+
+if(favorite !== 23){
+    console.log(`Not 23`);
+}
+
+
+
+/////////////
+//Logical operator
+
+const HasDriverslicense  = true // A
+const HasGoodVision = true //B
+
+console.log(HasDriverslicense && HasGoodVision);
+console.log(HasDriverslicense || HasGoodVision);
+console.log(!HasDriverslicense);
+
+const shouldDrive = HasDriverslicense && HasGoodVision;
+
+// if(shouldDrive){
+//     console.log(`Sarah can drive`);
+// } else {
+//     console.log(`Someone else can drive`);
+// }
+
+const isTired =  true; // C
+console.log(HasDriverslicense || HasGoodVision || isTired);
+
+if(shouldDrive && HasGoodVision && !isTired){
+    console.log(`Sarah can drive`);
+} else {
+    console.log(`Someone else can drive`);
+}
+    
+
+//Practice code
+const scoreDolphins = (96 + 108 + 89) / 3;
+const scoreKoalas = (88 + 91 + 110) / 3;
+console.log(scoreDolphins, scoreKoalas);
+ 
+if (scoreDolphins > scoreKoalas) {
+  console.log('Dolphins win the trophy 🏆');
+} else if (scoreKoalas > scoreDolphins) {
+  console.log('Koalas win the trophy');
+} else {
+  console.log('Both win the trophy');
+}
+
+
+/////////
+// switch statement
+
+const day = 'Monday';
+
+switch(day){
+    case 'Monday':// day === 'Monday'
+        console.log(`Plan course structure`);
+        console.log(`Go to coding meet up`);
+        break;// without the breaks the code will keep executing
+    case 'tuesday':
+        console.log(`preparing videos`);
+        break;
+    case 'wednesday':
+    case 'thursday':
+        console.log(`Writing code examples`);
+        break;
+    case 'friday':
+        console.log(`Record videos`);
+    case 'saturday':
+    case 'sunday':
+        console.log(`Enjoy your weekend now`);
+        break;
+    default:
+        console.log('Not a valid day');
+}
+
+
+///////////////
+//expressions and statements
+
+const century = 2000;//experessions
+
+console.log(`${century} century`);// statements
+
+//////
+//conditional Ternary operator // another way fro if/else
+
+ const Age = 23;
+ Age>=18 ? console.log(`I like wine🍷🍷`) : console.log(`I like water more💧`);
+
+const drink = Age>=18 ? 'wine' : 'water';
+
+console.log(drink);
+
+console.log(`I like to drink ${drink}`);
+console.log(`I like to drink ${Age>=18 ? 'wine' : 'water'}`);
+*/
+
+///coding challenge
+const bill = 275;
+const bill2 = 40;
+const bill3 = 430;
+
+/* Write your code below. Good luck! 🙂 */
+
+const tip = bill * (15/100);//15%
+const tip20 = bill2 * (20/100);
+const tipBig20 = bill3 * (20/100);
+
+const total = bill + tip;
+const total2 = bill2 + tip20;
+const total3 = bill3 + tipBig20;
+
+
+if(bill === 275){
+    console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${total}`);
+} else if(bill2 === 40){
+    console.log(`The bill was ${bill2}, the tip was ${tip20}, and the total value ${total2}`);
+} else {
+    console.log(`The bill was ${bill3}, the tip was ${tipBig20}, and the total value ${total3}`)
+}
+
+// OR
+const Bill = 430;
+const Tip = Bill <= 300 && Bill >= 50 ? Bill * 0.15 : Bill * 0.2;
+console.log(`The bill was ${Bill}, the tip was ${Tip}, and the total value ${Bill + Tip}`);
