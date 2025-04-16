@@ -1,5 +1,5 @@
 'use strict';// helps for debugging 
-
+/*
 let HasDriversLicense = false;
 
 const passTest = true;
@@ -48,11 +48,7 @@ const age3 = calcAge3(1991);
 console.log(age3);
 
 
-const yearUntilRetirement = (birthyear, firstname) =>{
-const Age = 2025 - birthyear;
-const retire = 65 - Age;
-return `${firstname} retires in ${retire} years`;
-}
+ 
 
 console.log(yearUntilRetirement(1993, 'Ifeanyi'));
 console.log(yearUntilRetirement(1992, 'Paige'));
@@ -72,3 +68,82 @@ function fruitProcessor(apples, oranges){
   //const fruitCuter = fruitProcessor(2, 5); //8, 20
 
   console.log(fruitProcessor(2, 5));
+
+ 
+
+  ///////////////////////////////////////
+// Reviewing Functions
+const calcAge = function (birthYear) {
+    return 2037 - birthYear;
+  }
+  
+  const yearsUntilRetirement = function (birthYear, firstName) {
+    const age = calcAge(birthYear);
+    const retirement = 65 - age;
+  
+    if (retirement > 0) {
+        console.log(`${firstName} retires in ${retirement} years`); // won't work if placed after return.
+      return retirement;
+    } else {
+      console.log(`${firstName} has already retired 🎉`); // won't work if placed after return.
+      return `retired`;
+    }
+  }
+  
+  console.log(yearsUntilRetirement(1991, 'Jonas'));
+  console.log(yearsUntilRetirement(1950, 'Mike'));
+  
+  
+  ///////////////////////////////////////
+
+//code challenge
+
+const calcAverage = (a, b, c) => (a + b + c) / 3;
+console.log(calcAverage(3, 4, 5));
+ 
+let scoreDolphins = calcAverage(44, 23, 71);
+let scoreKoalas = calcAverage(65, 54, 49);
+console.log(scoreDolphins, scoreKoalas);
+ 
+const checkWinner = function (avgDolphins, avgKoalas) {
+  if (avgDolphins >= 2 * avgKoalas) {
+    console.log(`Dolphins win (${avgDolphins} vs. ${avgKoalas})`);
+  } else if (avgKoalas >= 2 * avgDolphins) {
+    console.log(`Koalas win (${avgKoalas} vs. ${avgDolphins})`);
+  } else {
+    console.log('No team wins...');
+  }
+};
+ 
+checkWinner(scoreDolphins, scoreKoalas);
+
+
+const friends = ['Michael', 'steven', 'peter']; 
+console.log(friends);
+console.log(friends.length);
+console.log(friends[friends.length-1]); // the last item in array 3 -1 =2, peter is 2 in array( 0,1,2)
+
+ friends[2] = 'Jay'; // const with array can chnage so you dont need let
+ console.log(friends); //'Michael', 'steven', 'Jay'
+
+ const ify = ['ifeanyi', 'ojukwu', 2025 - 1993, 'teachers', friends];
+ console.log(ify);
+
+ const calcAge2 = function(birthyear){
+  return 2037 - birthyear;
+}
+
+const years = [1990, 1967, 2002, 2010, 2018];
+
+const age1= calcAge2(years[0]);
+const age2= calcAge2(years[1]);
+const age3= calcAge2(years[years.length -1 ]);
+
+console.log(age1, age2, age3);
+
+const ages = [calcAge2(years[0]), calcAge2(years[1]), calcAge2(years[years.length -1 ])];
+console.log(ages);
+
+*/
+
+const friends = ['Michael', 'steven', 'peter']; 
