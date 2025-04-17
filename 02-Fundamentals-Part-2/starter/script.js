@@ -146,4 +146,52 @@ console.log(ages);
 
 */
 
+
+
 const friends = ['Michael', 'steven', 'peter']; 
+//add elements to the end
+const newlength = friends.push('jay'); 
+console.log(friends);
+console.log(newlength);
+
+//add element to the beginning
+friends.unshift('john');
+console.log(friends);
+
+//remove elements
+friends.pop();//last
+const popped =  friends.pop();//remove the last again
+console.log(popped);
+console.log(friends);
+
+friends.shift();// remove first
+console.log(friends);
+
+console.log(friends.indexOf('steven')); //1 
+
+console.log(friends.includes('steven'));
+
+friends.push(23)
+console.log(friends.includes(23));// incluses is strict
+
+if (friends.includes('steven')){
+    console.log('You have a friend called steven'); 
+}
+
+/* code challenge 🙂 */
+
+function calcTip(tip){
+    return tip >= 50 && tip <=300 ? tip*0.15 : tip*0.2;
+    
+   
+}
+
+const bills = [125,555,44];
+
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+
+const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+ 
+console.log(bills, tips, totals);
+
+//console.log(totals);
