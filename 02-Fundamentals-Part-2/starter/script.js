@@ -144,8 +144,6 @@ console.log(age1, age2, age3);
 const ages = [calcAge2(years[0]), calcAge2(years[1]), calcAge2(years[years.length -1 ])];
 console.log(ages);
 
-*/
-
 
 
 const friends = ['Michael', 'steven', 'peter']; 
@@ -172,17 +170,16 @@ console.log(friends.indexOf('steven')); //1
 console.log(friends.includes('steven'));
 
 friends.push(23)
-console.log(friends.includes(23));// incluses is strict
+console.log(friends.includes(23));// includes is strict
 
 if (friends.includes('steven')){
     console.log('You have a friend called steven'); 
 }
 
-/* code challenge 🙂 */
+// code challenge 🙂 
 
 function calcTip(tip){
-    return tip >= 50 && tip <=300 ? tip*0.15 : tip*0.2;
-    
+    return tip >= 50 && tip <=300 ? tip*0.15 : tip*0.2;   
    
 }
 
@@ -195,3 +192,113 @@ const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 console.log(bills, tips, totals);
 
 //console.log(totals);
+
+
+const ify = {
+  firstname : 'Ifeanyi',
+  lastname: 'Ojukwu',
+  age: 2025 -1993,
+  job: 'Web dev',
+  friends: ['Michael', 'peter', 'steven']
+};
+
+console.log(ify.lastname);//limited
+console.log(ify['lastname']);// very versatile
+
+const namekey = 'name';
+console.log(ify['first' + namekey]);
+console.log(ify['last' + namekey]);
+
+const interestedIN = prompt('what do you wanna know about ify, choose firstname, lastname, age, job, and friends');
+
+
+const check = ify[interestedIN] ? console.log(ify[interestedIN]) : `Does not exist`;
+
+console.log(check);
+
+//add to array
+ify.location = 'USA';
+ify['twitter'] = 'fexzi';
+console.log(ify);
+
+const ifyBest = ify['friends'].length;
+const ifyFriend = ify['friends'][0]; //or ify.friends[0]
+
+console.log(`${ify['firstname']} has ${ifyBest} friends, and his best friend is called ${ifyFriend}`);
+*/
+
+const ify = {
+  firstname : 'Ifeanyi',
+  lastname: 'Ojukwu',
+  birthyear: 1993,
+  job: 'Web dev',
+  friends: ['Michael', 'peter', 'steven'],
+  hasDrivesLicense: true,
+
+  // calcAge: function(birthYear){
+  //   return 2025 - birthYear;
+  // }
+
+  // calcAge: function(){
+  //   return 2025 - this.birthyear;
+  // }
+
+//console.log(ify['calcAge'](1992));
+
+  calcAge: function(){
+    this.age = 2025 - this.birthyear;
+    return this.age;
+  },
+  getSummary: function() {
+    return `${this.firstname} is a ${this.calcAge()}-years old ${this.job}, and he has ${this.hasDrivesLicense ? 'a' : 'no'} driver's license`;
+
+  }
+};
+
+console.log(ify.calcAge());
+console.log(ify.age);
+
+const DriversL = ify['hasDrivesLicense'] ? `he has a driver's license` : `he doesn't have a drivers license`; 
+
+console.log(`${ify['firstname']} is a ${ify.age}, and ${DriversL}`);
+
+console.log(ify.getSummary());
+
+/////// code run ////
+/* Write your code below. Good luck! 🙂 */
+
+const mark = {
+  fullName : `Mark Miller's`,
+  mass:78,
+  height:1.69,
+  calcBMI :  function(){
+      this.bmi = this.mass/(this.height*this.height);
+      return this.bmi;
+  }
+}
+
+const john = {
+  fullName : `John Smith's`,
+  mass:92,
+  height:1.9,
+  calcBMI :  function(){
+      this.bmi = this.mass/(this.height*this.height);
+      return this.bmi;
+  }
+}
+//OR DO THIS 
+// mark.calcBMI();
+// john.calcBMI();
+// const checkBmi = john.bmi > mark.bmi
+
+const checkBmi = john.calcBMI()>mark.calcBMI() ? `${john.fullName} BMI (${john.calcBMI()}) is higher than ${mark.fullName} (${mark.calcBMI()})!` : `${mark.fullName} BMI (${mark.calcBMI()}) is higher than ${john.fullName} (${john.calcBMI()})!` ;
+
+console.log(checkBmi);
+
+
+
+for(let rep = 5; rep <=20; rep++ ){
+  
+console.log(`Lifting weights repetition ${rep} 🏋️`);
+  
+}
