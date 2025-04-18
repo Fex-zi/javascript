@@ -353,8 +353,6 @@ const bill = 275;
 const bill2 = 40;
 const bill3 = 430;
 
-/* Write your code below. Good luck! 🙂 */
-
 const tip = bill * (15/100);//15%
 const tip20 = bill2 * (20/100);
 const tipBig20 = bill3 * (20/100);
