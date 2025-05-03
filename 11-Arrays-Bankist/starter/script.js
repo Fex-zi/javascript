@@ -76,6 +76,29 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+
+console.log(deposits);
+const withdrawals = movements.filter(function (mov) {
+  return mov < 0;
+});
+
+console.log(withdrawals);
+
 ///////////////////////////////////////
 // Coding Challenge #1
 
@@ -98,11 +121,22 @@ TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 const fakedogsJulia = [3, 5, 2, 12, 7];
 const dogsKate = [4, 1, 15, 8, 3];
 const dogJulia = fakedogsJulia.slice(1, -2);
-console.log(dogJulia.join(','));
+//console.log(dogJulia.join(','));
 
 const checkDogs = function (dogs) {
-  dogs.forEach(function (arr, i) {});
+  dogs.forEach(function (arr, i) {
+    const check =
+      arr >= 3
+        ? `Dog number ${i + 1} is an adult, and is ${arr} years old`
+        : `Dog number ${i + 1} is still a puppy 🐶`;
+    console.log(check);
+  });
 };
+
+console.log(`---Kate's Dog below---`);
+checkDogs(dogsKate);
+console.log(`---Julia's Dog below---`);
+checkDogs(dogJulia);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -112,11 +146,27 @@ const checkDogs = function (dogs) {
 //   ['EUR', 'Euro'],
 //   ['GBP', 'Pound sterling'],
 // ]);
-
-//const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
 /*
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUsd = 1.1;
+const movementUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});
+const movementUS = movements.map(mov => mov * eurToUsd); //arrow function
+console.log(movements);
+console.log(movementUSD);
+console.log(movementUS);
+
+const movementDescription = movements.map(
+  (mov, i, arr) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+console.log(movementDescription);
+/////////////////////////////////////////////////
+
 let arr = ['a', 'b', 'c', 'd', 'e'];
 console.log(arr.join('-'));
 console.log(arr.slice(2));
