@@ -151,7 +151,7 @@ movements.forEach(function (move, index, arr) {
     console.log(`You Withdrew ${index + 1}: ${Math.abs(move)}`);
   }
 });
-*/
+
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
@@ -167,3 +167,4 @@ console.log(currenciesUnique);
 currenciesUnique.forEach(function (value, _, map) {
   console.log(value);
 });
+*/
