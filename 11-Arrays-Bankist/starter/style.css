@@ -156,10 +156,16 @@ nav {
 
 .movements__type--deposit {
   background-image: linear-gradient(to top left, #39b385, #9be15d);
+  padding: 4px;
+  border-radius: 0.5rem;
+  color: #fff;
 }
 
 .movements__type--withdrawal {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+  padding: 4px;
+  border-radius: 0.5rem;
+  color: #fff;
 }
 
 .movements__value {
