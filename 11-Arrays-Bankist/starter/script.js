@@ -61,9 +61,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `<div class="movements__row">
           <div class="movements_ _type movements__type--${type}"> ${
@@ -124,8 +127,10 @@ const calcDisplaySummary = function (acc) {
 let currentAccount;
 
 btnLogin.addEventListener('click', function (e) {
+  sorted = false;
   // prevents form from submitting
   e.preventDefault();
+
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
@@ -163,6 +168,18 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    //Add movement
+    currentAccount.movements.push(amount);
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -181,11 +198,114 @@ btnClose.addEventListener('click', function (e) {
   }
   inputCloseUsername.value = inputClosePin.value = '';
 });
+
+let sorted = false;
+
+//Sorting
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
 //////-----------Testing with movements below----------------////////
 
 console.log(`--- Test Code starts here ---`);
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const eurToUsd = 1.1;
+console.log(movements);
+
+///////////////////////////////////////
+// Array Methods Practice
+
+// 1.
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0);
+
+console.log(bankDepositSum);
+
+// 2.
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+
+console.log(numDeposits1000);
+
+// Prefixed ++ operator
+let a = 10;
+console.log(++a);
+console.log(a);
+
+// 3.
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(deposits, withdrawals);
+
+// 4.
+// this is a nice title -> This Is a Nice Title
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+    .join(' ');
+
+  return capitalize(titleCase);
+};
+
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG title but not too long'));
+console.log(convertTitleCase('and here is another title with an EXAMPLE'));
+
+//sort array ascending
+console.log(`sort array ascending`);
+const sortNow = movements.sort((a, b) => a - b);
+console.log(sortNow);
+
+//sort array descending
+console.log(`sort array descending`);
+// const sortDesc = movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (a < b) return 1;
+// });
+const sortDesc = movements.sort((a, b) => b - a);
+console.log(sortDesc);
+
+console.log(`flat() function`);
+const deepArr = [
+  [
+    [300, 489],
+    [-400, 3000, -650, -130],
+  ],
+  70,
+  1100,
+];
+console.log(deepArr.flat(2));
+
+// EQUALITY
+console.log(movements.includes(-130));
+
+//CONDITION
+const anyDeposits = movements.some(mov => mov > 1500);
+console.log(anyDeposits);
 
 console.log(accounts);
 const accountA = accounts.find(acc => acc.owner === 'Jessica Davis');
@@ -202,16 +322,16 @@ const totalDepositUSD = movements
   .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositUSD);
 
-const deposits = movements.filter(function (mov) {
+const deposits1 = movements.filter(function (mov) {
   return mov > 0;
 });
 
-console.log(deposits);
-const withdrawals = movements.filter(function (mov) {
+console.log(deposits1);
+const withdrawals1 = movements.filter(function (mov) {
   return mov < 0;
 });
 
-console.log(withdrawals);
+console.log(withdrawals1);
 
 console.log(`--- Im here ---`);
 // accumulator is like SNOWBALL
