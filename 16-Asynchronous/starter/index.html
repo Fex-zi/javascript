@@ -1,3 +1,40 @@
+<!--<?php /*
+function getCountryData($country) {
+    try {
+        $request = file_get_contents("https://restcountries.com/v2/name/$country");
+        
+        if ($request === false) {
+            throw new Exception("Failed to fetch data for $country");
+        }
+        
+        $data = json_decode($request, true);
+        
+        // Using array destructuring in PHP 7.1+ (similar to const [data] in JS)
+        [$countryData] = $data;
+        
+        $population = number_format($countryData['population'] / 1000000, 1);
+        
+        $html = "<article class='country'>
+            <img class='country__img' src='{$countryData['flag']}' />
+            <div class='country__data'>
+                <h3 class='country__name'>{$countryData['name']}</h3>
+                <h4 class='country__region'>{$countryData['region']}</h4>
+                <p class='country__row'><span>👫</span>{$population}</p>
+                <p class='country__row'><span>🗣️</span>{$countryData['languages'][0]['name']}</p>
+                <p class='country__row'><span>💰</span>{$countryData['currencies'][0]['name']}</p>
+            </div>
+        </article>";
+        
+        echo $html;
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+
+getCountryData('portugal');
+getCountryData('usa');
+getCountryData('Nigeria');
+  */?> -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,6 +45,7 @@
     <script defer src="script.js"></script>
     <title>Asynchronous JavaScript</title>
   </head>
+
   <body>
     <main class="container">
       <div class="countries">
