@@ -226,8 +226,8 @@ TEST COORDINATES 2: -33.933, 18.474
 
 */
 // /https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}
-
-const whereAmI = function (lat, lng) {
+/*
+const whereAmI1 = function (lat, lng) {
   fetch(
     `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
   )
@@ -248,8 +248,93 @@ const whereAmI = function (lat, lng) {
   //.then(data => data);
 };
 
-whereAmI(52.508, 13.381);
-whereAmI(19.037, 72.873);
-whereAmI(-33.933, 18.474);
+whereAmI1(52.508, 13.381);
+whereAmI1(19.037, 72.873);
+whereAmI1(-33.933, 18.474);
 
-console.log(`Resolved promise`);
+console.log(`----Resolved promise----`);
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => console.log(position),
+    //   err => console.log(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+getPosition().then(pos => console.log(pos));
+
+//lat: pos.coords.latitude
+//lng: pos.coords.longitude
+
+const whereAmI = function () {
+  getPosition()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+
+      return fetch(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
+      );
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.countryCode}`);
+
+      return fetch(`https://restcountries.com/v2/name/${data.countryCode}`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`${erroMsg} ${response.status}`);
+      return res.json();
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.log(`${err.message}`));
+
+  //.then(data => data);
+};
+
+btn.addEventListener('click', whereAmI);
+*/
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const whereAmI = async function (country) {
+  try {
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lng } = pos.coords;
+
+    const resGeo = await fetch(
+      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
+    );
+    const dataGeo = await resGeo.json();
+    console.log(dataGeo);
+    const res = await fetch(
+      `https://restcountries.com/v2/name/${dataGeo.countryCode}`
+    );
+    const data = await res.json();
+    console.log(data[0]);
+    renderCountry(data?.[0]);
+  } catch (err) {
+    console.error(err);
+    renderError(`Something Went Wrong ⛔⛔⛔${err.message}.`);
+  }
+};
+whereAmI();
+
+//whereAmI(`${data[0].alpha3Code}`);
+console.log('First');
+
+// / using an async IIFE for top-level await
+(async function () {
+  try {
+    const location = await whereAmI('usa');
+    console.log(`Success: ${location}`);
+  } catch (err) {
+    console.error(`Handling error: ${err}`);
+  }
+})();
